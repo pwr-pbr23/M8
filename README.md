@@ -1,12 +1,15 @@
-Topic
-=====
+DeepLineDP: Towards a Deep Learning Approach for Line-Level Defect Prediction
+=============================================================================
 
-Rationale for the topic
+The topic was chosen because of:
+- availability of source code of models which gives a possibility to reproduce and develop research,
+- availability of datasets on which models were trained which also gives a possibility to reproduce research,
+- availability of scripts and an instruction of how to use these scripts to reproduce research. 
 
 Authors 
 --------
 
-Patrycja Kałużna (252864), Michał Gałecki (), Jakub Walaszek ()
+Patrycja Kałużna (252864), Michał Gałecki (252869), Jakub Walaszek (252897)
 
 Trello
 ------
