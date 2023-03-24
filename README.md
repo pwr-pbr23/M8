@@ -31,6 +31,11 @@ Overleaf
 
 https://www.overleaf.com/project/6401cc2de33881644150cd5f
 
+Google Colab
+------------
+
+https://colab.research.google.com/drive/139uWve5H07uM0SIKZSuevsi-dEjWeK9P?usp=sharing
+
 Leadership's schedule
 ---------------------
 https://politechnikawroclawska-my.sharepoint.com/:x:/g/personal/252864_student_pwr_edu_pl/EZkkBqJQHCROlh3e_fCDmbABqrCMpqgz_4aZvHR55gZ14A?e=RNPHLI
