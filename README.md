@@ -1,8 +1,15 @@
 DeepLineDP: Towards a Deep Learning Approach for Line-Level Defect Prediction
 =============================================================================
 
-Article: https://ieeexplore.ieee.org/document/9689967
-Article's GitHub: https://github.com/awsm-research/DeepLineDP
+Article
+-------
+
+https://ieeexplore.ieee.org/document/9689967
+
+Article's GitHub
+----------------
+
+https://github.com/awsm-research/DeepLineDP
 
 The topic was chosen because of:
 - availability of source code of models which gives a possibility to reproduce and develop research,
