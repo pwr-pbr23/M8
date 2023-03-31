@@ -12,7 +12,8 @@ from gensim.models import Word2Vec
 
 from tqdm import tqdm
 
-from baseline_util import *
+# from baseline_util import *
+import baseline_util as bu
 
 # for importing file from previous directory
 sys.path.append('../')
@@ -135,8 +136,8 @@ def train_model(dataset_name):
     
     valid_df = get_df(valid_rel, is_baseline=True)
 
-    train_code, train_label = prepare_data(train_df, to_lowercase = True)
-    valid_code, valid_label = prepare_data(valid_df, to_lowercase = True)
+    train_code, train_label = bu.prepare_data(train_df, to_lowercase = True)
+    valid_code, valid_label = bu.prepare_data(valid_df, to_lowercase = True)
 
     word2vec_model = Word2Vec.load(w2v_dir)
 
@@ -144,8 +145,8 @@ def train_model(dataset_name):
 
     vocab_size = len(word2vec_model.wv.vocab)+1
         
-    train_dl = get_dataloader(word2vec_model, train_code,train_label, padding_idx, batch_size)
-    valid_dl = get_dataloader(word2vec_model, valid_code,valid_label, padding_idx, batch_size)
+    train_dl = bu.get_dataloader(word2vec_model, train_code,train_label, padding_idx, batch_size)
+    valid_dl = bu.get_dataloader(word2vec_model, valid_code,valid_label, padding_idx, batch_size)
 
     net = LSTMClassifier(batch_size, hidden_dim, vocab_size, embed_dim)
 

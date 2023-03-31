@@ -36,7 +36,8 @@ args = arg.parse_args()
 batch_size = 30
 hidden_layers_structure = [100]*10
 embed_dim = 50
-exp_name = arg.exp_name
+# exp_name = arg.exp_name
+exp_name = ''
 
 save_model_dir = '../../output/model/DBN/'
 save_prediction_dir = '../../output/prediction/DBN/'

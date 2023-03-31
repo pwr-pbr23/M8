@@ -10,7 +10,8 @@ from gensim.models import Word2Vec
 
 from tqdm import tqdm
 
-from baseline_util import *
+# from baseline_util import *
+import baseline_util as bu
 
 sys.path.append('../')
 
@@ -143,8 +144,8 @@ def train_model(dataset_name):
     
     vocab_size = len(word2vec_model.wv.vocab)  + 1 # for unknown tokens
 
-    train_code, train_label = prepare_data(train_df, to_lowercase = True)
-    valid_code, valid_label = prepare_data(valid_df, to_lowercase = True)
+    train_code, train_label = bu.prepare_data(train_df, to_lowercase = True)
+    valid_code, valid_label = bu.prepare_data(valid_df, to_lowercase = True)
 
     word2vec_model = Word2Vec.load(w2v_dir)
 
@@ -152,8 +153,8 @@ def train_model(dataset_name):
 
     vocab_size = len(word2vec_model.wv.vocab)+1
         
-    train_dl = get_dataloader(word2vec_model, train_code,train_label, padding_idx)
-    valid_dl = get_dataloader(word2vec_model, valid_code,valid_label, padding_idx)
+    train_dl = bu.get_dataloader(word2vec_model, train_code,train_label, padding_idx, batch_size)
+    valid_dl = bu.get_dataloader(word2vec_model, valid_code,valid_label, padding_idx, batch_size)
 
     net = CNN(batch_size, 1, n_filters, 0.5, vocab_size, embed_dim)
 
@@ -224,7 +225,7 @@ def train_model(dataset_name):
             optimizer.step()
             
 
-        train_loss_all_epochs.append(np.mean(train_losses))
+        train_loss_all_epochs.append(bu.np.mean(train_losses))
 
         with torch.no_grad():
 
@@ -239,7 +240,7 @@ def train_model(dataset_name):
 
                 val_losses.append(val_loss.item())
 
-            val_loss_all_epochs.append(np.mean(val_losses))
+            val_loss_all_epochs.append(bu.np.mean(val_losses))
 
         if e % save_every_epochs == 0: 
             torch.save({
@@ -251,7 +252,7 @@ def train_model(dataset_name):
     
 
         loss_df = pd.DataFrame()
-        loss_df['epoch'] = np.arange(1,len(train_loss_all_epochs)+1)
+        loss_df['epoch'] = bu.np.arange(1,len(train_loss_all_epochs)+1)
         loss_df['train_loss'] = train_loss_all_epochs
         loss_df['valid_loss'] = val_loss_all_epochs
         
@@ -296,10 +297,10 @@ def predict_defective_files_in_releases(dataset_name, target_epochs = 100):
 
             code = list(df['code_line'])
 
-            code_str = get_code_str(code, True)
+            code_str = bu.get_code_str(code, True)
             code_list = [code_str]
 
-            code_vec = get_code_vec(code_list, word2vec_model)
+            code_vec = bu.get_code_vec(code_list, word2vec_model)
 
             code_tensor = torch.tensor(code_vec)
 
