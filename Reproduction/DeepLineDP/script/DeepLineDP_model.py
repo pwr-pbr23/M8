@@ -42,7 +42,7 @@ class HierarchicalAttentionNetwork(nn.Module):
                 code_line.append(len(line))
             sent_lengths.append(code_line)
         
-        code_tensor = code_tensor.type(torch.LongTensor)
+        code_tensor = code_tensor.type(torch.LongTensor).cuda()
         code_lengths = torch.tensor(code_lengths).type(torch.LongTensor).cuda()
         sent_lengths = torch.tensor(sent_lengths).type(torch.LongTensor).cuda()
         
