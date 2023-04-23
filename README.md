@@ -31,11 +31,30 @@ Overleaf
 
 https://www.overleaf.com/project/6401cc2de33881644150cd5f
 
-Google Colab
-------------
+Google Colaboratory
+-------------------
 
 https://colab.research.google.com/drive/139uWve5H07uM0SIKZSuevsi-dEjWeK9P?usp=sharing
 
 Leadership's schedule
 ---------------------
 https://politechnikawroclawska-my.sharepoint.com/:x:/g/personal/252864_student_pwr_edu_pl/EZkkBqJQHCROlh3e_fCDmbABqrCMpqgz_4aZvHR55gZ14A?e=RNPHLI
+
+Research reproduction steps
+---------------------------
+1. Click on link to Google Colaboratory environment which contains Jupyter Notebook that allows of downloading required files, configuring required environments and reproducing research for DeepLineDP model and file-level baselines.
+   
+    https://colab.research.google.com/drive/139uWve5H07uM0SIKZSuevsi-dEjWeK9P?usp=sharing
+
+2. Click on consecutive field's arrow signs to download required files, configure required environments and reproduce research.
+
+Research reproduction's results can be found in `/content/M8/Reproduction/DeepLineDP/output` directory:
+- `/content/M8/Reproduction/DeepLineDP/output/model/DeepLineDP/<PROJECT_NAME>` - contains trained models for \<PROJECT_NAME\> project,
+- `/content/M8/Reproduction/DeepLineDP/output/loss/DeepLineDP/<PROJECT_NAME>-loss_record.csv` - contains training and validations loss for \<PROJECT_NAME\> project,
+- `/content/M8/Reproduction/DeepLineDP/output/prediction/DeepLineDP/within-release` - contains projects releases' within-release predictions,
+- `/content/M8/Reproduction/DeepLineDP/output/prediction/DeepLineDP/cross-project/<PROJECT_NAME>` - contains \<PROJECT_NAME\> project's cross-projects predictions, 
+- `/content/M8/Reproduction/DeepLineDP/output/model/<FILE-LEVEL_BASELINE_NAME>/<PROJECT_NAME>` - contains trained models for \<FILE-LEVEL_BASELINE_NAME\> file-level baseline and \<PROJECT_NAME\> project,
+- `/content/M8/Reproduction/DeepLineDP/output/loss/<FILE-LEVEL_BASELINE_NAME>/<PROJECT_NAME>-<FILE-LEVEL_BASELINE_NAME>-loss_record.csv` - contains training and validation loss for \<FILE-LEVEL_BASELINE_NAME\> file-level baseline and \<PROJECT_NAME\> project,
+- `/content/M8/Reproduction/DeepLineDP/output/prediction/<FILE-LEVEL_BASELINE_NAME>` - contains predictions for \<FILE-LEVEL_BASELINE_NAME\> file-level baseline.
+
+Where \<PROJECT_NAME\> can be one of following: activemq, camel, derby, groovy, hbase, hive, jruby, lucene, wicket and where \<FILE-LEVEL_BASELINE_NAME\> can be one of following: Bi-LSTM, CNN, DBN, BoW.
