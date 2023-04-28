@@ -48,6 +48,8 @@ Research reproduction steps
 
 2. Click on consecutive field's arrow signs to download required files, configure required environments and reproduce research.
 
+**Note:** Google Colaboratory environment session can last up to 12 hours but can end before this time unexpectedly. It is important to remember to save results outside of this environment from time to time. At the end of the Jupyter Notebook there are 2 fields which alows of exporting and importing all data that is in the environment to and from Google Drive.
+
 Research reproduction's results can be found in `/content/M8/Reproduction/DeepLineDP/output` directory:
 - `/content/M8/Reproduction/DeepLineDP/output/model/DeepLineDP/<PROJECT_NAME>` - contains trained models for \<PROJECT_NAME\> project,
 - `/content/M8/Reproduction/DeepLineDP/output/loss/DeepLineDP/<PROJECT_NAME>-loss_record.csv` - contains training and validations loss for \<PROJECT_NAME\> project,
