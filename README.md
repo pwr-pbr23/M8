@@ -1,25 +1,38 @@
-DeepLineDP: Towards a Deep Learning Approach for Line-Level Defect Prediction
-=============================================================================
+On Improving Line-Level Defect Prediction: An Evaluation and Enhancement of the DeepLineDP Model Using the Defectors Dataset
+============================================================================================================================
 
-Article
+Authors 
 -------
 
-https://ieeexplore.ieee.org/document/9689967
+Patrycja Kałużna (252864)
 
-Article's GitHub
-----------------
+Jakub Walaszek (252897)
 
-https://github.com/awsm-research/DeepLineDP
+Reasons
+-------
 
 The topic was chosen because of:
 - availability of source code of models which gives a possibility to reproduce and develop research,
 - availability of datasets on which models were trained which also gives a possibility to reproduce research,
 - availability of scripts and an instruction of how to use these scripts to reproduce research. 
 
-Authors 
--------
+Articles 
+--------
 
-Patrycja Kałużna (252864), Michał Gałecki (252869), Jakub Walaszek (252897)
+DeepLineDP model: https://ieeexplore.ieee.org/document/9689967
+
+Defectors dataset: https://arxiv.org/abs/2303.04738
+
+DeepLineDP model's GitHub
+-------------------------
+
+https://github.com/awsm-research/DeepLineDP
+
+Defectors dataset's source
+--------------------------
+
+https://zenodo.org/record/7708984
+
 
 Trello
 ------
