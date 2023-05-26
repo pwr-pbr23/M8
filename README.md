@@ -63,13 +63,19 @@ Research reproduction steps
 
 **Note:** Google Colaboratory environment session can last up to 12 hours but can end before this time unexpectedly. It is important to remember to save results outside of this environment from time to time. At the end of the Jupyter Notebook there are 2 fields which alows of exporting and importing all data that is in the environment to and from Google Drive.
 
-Research reproduction's results can be found in `/content/M8/Reproduction/DeepLineDP/output` directory:
+3. To reproduce research for line-level baselines on Windows machine:
+    1. Install Java and Jupyter if they are not installed,
+    2. Run `DeepLineDP_line_level_baselines_local_reproduction.bat` script from `M8/Reproduction` folder.
+
+Research reproduction's results can be found in `M8/Reproduction/DeepLineDP/output` directory:
 - `/content/M8/Reproduction/DeepLineDP/output/model/DeepLineDP/<PROJECT_NAME>` - contains trained models for \<PROJECT_NAME\> project,
 - `/content/M8/Reproduction/DeepLineDP/output/loss/DeepLineDP/<PROJECT_NAME>-loss_record.csv` - contains training and validations loss for \<PROJECT_NAME\> project,
 - `/content/M8/Reproduction/DeepLineDP/output/prediction/DeepLineDP/within-release` - contains projects releases' within-release predictions,
 - `/content/M8/Reproduction/DeepLineDP/output/prediction/DeepLineDP/cross-project/<PROJECT_NAME>` - contains \<PROJECT_NAME\> project's cross-projects predictions, 
 - `/content/M8/Reproduction/DeepLineDP/output/model/<FILE-LEVEL_BASELINE_NAME>/<PROJECT_NAME>` - contains trained models for \<FILE-LEVEL_BASELINE_NAME\> file-level baseline and \<PROJECT_NAME\> project,
 - `/content/M8/Reproduction/DeepLineDP/output/loss/<FILE-LEVEL_BASELINE_NAME>/<PROJECT_NAME>-<FILE-LEVEL_BASELINE_NAME>-loss_record.csv` - contains training and validation loss for \<FILE-LEVEL_BASELINE_NAME\> file-level baseline and \<PROJECT_NAME\> project,
-- `/content/M8/Reproduction/DeepLineDP/output/prediction/<FILE-LEVEL_BASELINE_NAME>` - contains predictions for \<FILE-LEVEL_BASELINE_NAME\> file-level baseline.
+- `/content/M8/Reproduction/DeepLineDP/output/prediction/<FILE-LEVEL_BASELINE_NAME>` - contains predictions for \<FILE-LEVEL_BASELINE_NAME\> file-level baseline,
+- `M8/Reproduction/DeepLineDP/output/n_gram_result` - contains results for N-gram line-level baseline,
+- `M8/Reproduction/DeepLineDP/output/ErrorProne_result` - contains results for ErrorProne line-level baseline.
 
 Where \<PROJECT_NAME\> can be one of following: activemq, camel, derby, groovy, hbase, hive, jruby, lucene, wicket and where \<FILE-LEVEL_BASELINE_NAME\> can be one of following: Bi-LSTM, CNN, DBN, BoW.
