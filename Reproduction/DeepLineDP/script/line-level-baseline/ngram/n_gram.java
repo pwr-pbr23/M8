@@ -23,8 +23,8 @@ import slp.core.translating.Vocabulary;
 
 public class n_gram
 {
-	public static String root_dir = "./n_gram_data/";
-	public static String result_dir = "./n_gram_result/";
+	public static String root_dir = "../../../datasets/n_gram_data/";
+	public static String result_dir = "../../../output/n_gram_result/";
 	
 	public static String all_dataset[] = {"activemq","camel","derby","groovy","hbase","hive", "jruby","lucene","wicket"};
 	public static String all_train_releases[] = {"activemq-5.0.0","camel-1.4.0","derby-10.2.1.6","groovy-1_5_7","hbase-0.94.0", "hive-0.9.0","jruby-1.1","lucene-2.3.0","wicket-1.3.0-incubating-beta-1"};
