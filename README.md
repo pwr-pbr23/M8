@@ -64,7 +64,7 @@ Research reproduction steps
 **Note:** Google Colaboratory environment session can last up to 12 hours but can end before this time unexpectedly. It is important to remember to save results outside of this environment from time to time. At the end of the Jupyter Notebook there are 2 fields which alows of exporting and importing all data that is in the environment to and from Google Drive.
 
 3. To reproduce research for line-level baselines on Windows machine:
-    1. Install Java and Jupyter if they are not installed,
+    1. Install Java and Python if they are not installed,
     2. Run `DeepLineDP_line_level_baselines_local_reproduction.bat` script from `M8/Reproduction` folder.
 
 Research reproduction's results can be found in `M8/Reproduction/DeepLineDP/output` directory:

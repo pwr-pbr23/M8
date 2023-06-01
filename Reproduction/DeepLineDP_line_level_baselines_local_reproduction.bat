@@ -1,3 +1,5 @@
+@echo off
+
 echo Checking if Java is installed...
 java -version >nul 2>&1
 if %errorlevel% equ 0 (
@@ -7,13 +9,12 @@ if %errorlevel% equ 0 (
     exit /b 1
 )
 
-echo Checking if Jupyter Notebook is installed...
-jupyter notebook --version >nul 2>&1
+echo Checking if Python is installed...
+where python >nul 2>&1
 if %errorlevel% equ 0 (
-    echo Jupyter Notebook is installed.
+    echo Python is installed.
 ) else (
-    echo Jupyter Notebook is not installed.
-    exit /b 1
+    echo Python is not installed.
 )
 
 cd DeepLineDP\script\line-level-baseline\
