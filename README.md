@@ -47,7 +47,13 @@ https://www.overleaf.com/project/6401cc2de33881644150cd5f
 Google Colaboratory
 -------------------
 
+For generating research reproduction's results:
+
 https://colab.research.google.com/drive/139uWve5H07uM0SIKZSuevsi-dEjWeK9P?usp=sharing
+
+For generating figures representing research questions' answers:
+
+https://colab.research.google.com/drive/1rglM2qt-w5JA-PXk2WnGHK_eAml3Wqae?usp=sharing
 
 Leadership's schedule
 ---------------------
@@ -55,7 +61,7 @@ https://politechnikawroclawska-my.sharepoint.com/:x:/g/personal/252864_student_p
 
 Research reproduction steps
 ---------------------------
-1. Click on link to Google Colaboratory environment which contains Jupyter Notebook that allows of downloading required files, configuring required environments and reproducing research for DeepLineDP model and file-level baselines.
+1. Click on link to Google Colaboratory environment which contains Jupyter Notebook that allows of downloading required files, configuring required environment and reproducing research for DeepLineDP model and file-level baselines.
    
     https://colab.research.google.com/drive/139uWve5H07uM0SIKZSuevsi-dEjWeK9P?usp=sharing
 
@@ -79,3 +85,13 @@ Research reproduction's results can be found in `M8/Reproduction/DeepLineDP/outp
 - `M8/Reproduction/DeepLineDP/output/ErrorProne_result` - contains results for ErrorProne line-level baseline.
 
 Where \<PROJECT_NAME\> can be one of following: activemq, camel, derby, groovy, hbase, hive, jruby, lucene, wicket and where \<FILE-LEVEL_BASELINE_NAME\> can be one of following: Bi-LSTM, CNN, DBN, BoW.
+
+4. Click on link to Google Colaboratory environment with R runtime type which contains Jupter Notebook that allows of downloading research reproduction results, installing required R libraries and generating figures representing research questions' answers. 
+
+    https://colab.research.google.com/drive/1rglM2qt-w5JA-PXk2WnGHK_eAml3Wqae?usp=sharing
+
+5. Click on consecutive field's arrow signs to download research reproduction results, install required R libraries and generate figures.
+
+Figures representing research question's answers can be found in `M8/Reproduction/DeepLineDP/output/figures` directory.
+
+**Note**: This Google Colaboratory environment and Jupyter Notebook allows of generating figures representing research questions' answers for 2 of 4 research questions. It is because get_evaluation_result.R script provided by researchers has bugs and we have not been able to correct all of them yet.
