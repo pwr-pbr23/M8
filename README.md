@@ -55,6 +55,10 @@ For generating figures representing research questions' answers:
 
 https://colab.research.google.com/drive/1rglM2qt-w5JA-PXk2WnGHK_eAml3Wqae?usp=sharing
 
+For generating research development reproduction's results:
+
+https://colab.research.google.com/drive/1IPa3uUJq5pp6JZCgie_G34mhz2m8TbqK?usp=sharing
+
 Leadership's schedule
 ---------------------
 https://politechnikawroclawska-my.sharepoint.com/:x:/g/personal/252864_student_pwr_edu_pl/EZkkBqJQHCROlh3e_fCDmbABqrCMpqgz_4aZvHR55gZ14A?e=RNPHLI
@@ -65,7 +69,7 @@ Research reproduction steps
    
     https://colab.research.google.com/drive/139uWve5H07uM0SIKZSuevsi-dEjWeK9P?usp=sharing
 
-2. Click on consecutive field's arrow signs to download required files, configure required environments and reproduce research.
+2. Click on consecutive field's arrow signs to download required files, configure required environment and reproduce research.
 
 **Note:** Google Colaboratory environment session can last up to 12 hours but can end before this time unexpectedly. It is important to remember to save results outside of this environment from time to time. At the end of the Jupyter Notebook there are 2 fields which alows of exporting and importing all data that is in the environment to and from Google Drive.
 
@@ -95,3 +99,19 @@ Where \<PROJECT_NAME\> can be one of following: activemq, camel, derby, groovy, 
 Figures representing research question's answers can be found in `M8/Reproduction/DeepLineDP/output/figure` directory.
 
 **Note**: This Google Colaboratory environment and Jupyter Notebook allows of generating figures representing research questions' answers for 2 of 4 research questions. It is because get_evaluation_result.R script provided by researchers has bugs and we have not been able to correct all of them yet.
+
+Research development reproduction steps
+---------------------------------------
+
+1. Click on link to Google Colaboratory environment which contains Jupter Notebook that allows of downloading required files, configuring required environemnt and reproducing developed research.
+
+https://colab.research.google.com/drive/1IPa3uUJq5pp6JZCgie_G34mhz2m8TbqK?usp=sharing
+
+2. Click on consecutive field's arrow signs to download required files, configure required environment and reproduce developed research.
+
+Developed research reproduction's results can be found in the same directory as previous reproduction results:
+- `/content/M8/Reproduction/DeepLineDP/output/model/DeepLineDP/<DATASET_NAME>` - contains trained models for \<DATASET_NAME\> dataset,
+- `/content/M8/Reproduction/DeepLineDP/output/loss/DeepLineDP/<DATASET_NAME>-loss_record.csv` - contains training and validation loss for \<DATASET_NAME\> dataset,
+- `/content/M8/Reproduction/DeepLineDP/output/prediction/DeepLineDP/within-release` - contains predictions for each dataset.
+
+Where \<DATASET_NAME\> can be one of following: dataset_RQ1, dataset_RQ2, dataset_RQ3, dataset_RQ4, dataset_RQ5. These datasets are prepared per research question.

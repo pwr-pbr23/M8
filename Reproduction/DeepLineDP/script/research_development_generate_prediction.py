@@ -1,19 +1,15 @@
 import os, argparse, pickle
-
 import pandas as pd
-
 from gensim.models import Word2Vec
-
 from tqdm import tqdm
-
 from DeepLineDP_model import *
-from my_util import *
+from research_development_my_util import *
 
 torch.manual_seed(0)
 
 arg = argparse.ArgumentParser()
 
-arg.add_argument('-dataset',type=str, default='activemq', help='software project name (lowercase)')
+arg.add_argument('-dataset',type=str, help='software project name (lowercase)')
 arg.add_argument('-embed_dim', type=int, default=50, help='word embedding size')
 arg.add_argument('-word_gru_hidden_dim', type=int, default=64, help='word attention hidden size')
 arg.add_argument('-sent_gru_hidden_dim', type=int, default=64, help='sentence attention hidden size')
@@ -43,8 +39,8 @@ save_every_epochs = 5
 exp_name = args.exp_name
 
 save_model_dir = '../output/model/DeepLineDP/'
-intermediate_output_dir = '../output/intermediate_output/DeepLineDP/within-release/'
-prediction_dir = '../output/prediction/DeepLineDP/within-release/'
+intermediate_output_dir = '../output/intermediate_output/DeepLineDP/research_development/'
+prediction_dir = '../output/prediction/DeepLineDP/research_development/'
 
 file_lvl_gt = '../datasets/preprocessed_data/'
 

@@ -2,7 +2,7 @@ import os, sys
 from gensim.models import Word2Vec
 import more_itertools
 from DeepLineDP_model import *
-from my_util import *
+from research_development_my_util import *
 
 
 def train_word2vec_model(dataset_name, embedding_dim = 50):

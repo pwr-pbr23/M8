@@ -5,27 +5,23 @@ import pandas as pd
 
 max_seq_len = 50
 
-all_train_releases = {'activemq': 'activemq-5.0.0', 'camel': 'camel-1.4.0', 'derby': 'derby-10.2.1.6', 
-                      'groovy': 'groovy-1_5_7', 'hbase': 'hbase-0.94.0', 'hive': 'hive-0.9.0', 
-                      'jruby': 'jruby-1.1', 'lucene': 'lucene-2.3.0', 'wicket': 'wicket-1.3.0-incubating-beta-1'}
+all_train_releases = {'dataset_RQ1': 'dataset_RQ1_train', 
+                      'dataset_RQ2': 'dataset_RQ2_train', 
+                      'dataset_RQ3': 'dataset_RQ3_train', 
+                      'dataset_RQ4': 'dataset_RQ4_train', 
+                      'dataset_RQ5': 'dataset_RQ5_train'}
 
-all_eval_releases = {'activemq': ['activemq-5.1.0', 'activemq-5.2.0', 'activemq-5.3.0', 'activemq-5.8.0'], 
-                     'camel': ['camel-2.9.0', 'camel-2.10.0', 'camel-2.11.0'], 
-                     'derby': ['derby-10.3.1.4', 'derby-10.5.1.1'], 
-                     'groovy': ['groovy-1_6_BETA_1', 'groovy-1_6_BETA_2'], 
-                     'hbase': ['hbase-0.95.0', 'hbase-0.95.2'], 'hive': ['hive-0.10.0', 'hive-0.12.0'], 
-                     'jruby': ['jruby-1.4.0', 'jruby-1.5.0', 'jruby-1.7.0.preview1'], 
-                     'lucene': ['lucene-2.9.0', 'lucene-3.0.0', 'lucene-3.1'], 
-                     'wicket': ['wicket-1.3.0-beta2', 'wicket-1.5.3']}
+all_eval_releases = {'dataset_RQ1': ['dataset_RQ1_eval_1', 'dataset_RQ1_eval_2'], 
+                     'dataset_RQ2': ['dataset_RQ2_eval_1', 'dataset_RQ2_eval_2'], 
+                     'dataset_RQ3': ['dataset_RQ3_eval_1', 'dataset_RQ3_eval_2'], 
+                     'dataset_RQ4': ['dataset_RQ4_eval_1', 'dataset_RQ4_eval_2'], 
+                     'dataset_RQ5': ['dataset_RQ5_eval_1', 'dataset_RQ5_eval_2']}
 
-all_releases = {'activemq': ['activemq-5.0.0', 'activemq-5.1.0', 'activemq-5.2.0', 'activemq-5.3.0', 'activemq-5.8.0'], 
-                     'camel': ['camel-1.4.0', 'camel-2.9.0', 'camel-2.10.0', 'camel-2.11.0'], 
-                     'derby': ['derby-10.2.1.6', 'derby-10.3.1.4', 'derby-10.5.1.1'], 
-                     'groovy': ['groovy-1_5_7', 'groovy-1_6_BETA_1', 'groovy-1_6_BETA_2'], 
-                     'hbase': ['hbase-0.94.0', 'hbase-0.95.0', 'hbase-0.95.2'], 'hive': ['hive-0.9.0', 'hive-0.10.0', 'hive-0.12.0'], 
-                     'jruby': ['jruby-1.1', 'jruby-1.4.0', 'jruby-1.5.0', 'jruby-1.7.0.preview1'], 
-                     'lucene': ['lucene-2.3.0', 'lucene-2.9.0', 'lucene-3.0.0', 'lucene-3.1'], 
-                     'wicket': ['wicket-1.3.0-incubating-beta-1', 'wicket-1.3.0-beta2', 'wicket-1.5.3']}
+all_releases = {'dataset_RQ1': ['dataset_RQ1_train', 'dataset_RQ1_eval_1', 'dataset_RQ1_eval_2'], 
+                'dataset_RQ2': ['dataset_RQ2_train', 'dataset_RQ2_eval_1', 'dataset_RQ2_eval_2'], 
+                'dataset_RQ3': ['dataset_RQ3_train', 'dataset_RQ3_eval_1', 'dataset_RQ3_eval_2'], 
+                'dataset_RQ4': ['dataset_RQ4_train', 'dataset_RQ4_eval_1', 'dataset_RQ4_eval_2'], 
+                'dataset_RQ5': ['dataset_RQ5_train', 'dataset_RQ5_eval_1', 'dataset_RQ5_eval_2']}
 
 all_projs = list(all_train_releases.keys())
 

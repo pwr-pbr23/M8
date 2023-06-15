@@ -1,24 +1,18 @@
 import os, re, argparse
-
 import torch.optim as optim
-
 import numpy as np
 import pandas as pd
-
 from gensim.models import Word2Vec
-
 from tqdm import tqdm
-
 from sklearn.utils import compute_class_weight
-
 from DeepLineDP_model import *
-from my_util import *
+from research_development_my_util import *
 
 torch.manual_seed(0)
 
 arg = argparse.ArgumentParser()
 
-arg.add_argument('-dataset',type=str, default='activemq', help='software project name (lowercase)')
+arg.add_argument('-dataset',type=str, help='software project name (lowercase)')
 arg.add_argument('-batch_size', type=int, default=32)
 arg.add_argument('-num_epochs', type=int, default=10)
 arg.add_argument('-embed_dim', type=int, default=50, help='word embedding size')
