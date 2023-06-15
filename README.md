@@ -92,6 +92,6 @@ Where \<PROJECT_NAME\> can be one of following: activemq, camel, derby, groovy, 
 
 5. Click on consecutive field's arrow signs to download research reproduction results, install required R libraries and generate figures.
 
-Figures representing research question's answers can be found in `M8/Reproduction/DeepLineDP/output/figures` directory.
+Figures representing research question's answers can be found in `M8/Reproduction/DeepLineDP/output/figure` directory.
 
 **Note**: This Google Colaboratory environment and Jupyter Notebook allows of generating figures representing research questions' answers for 2 of 4 research questions. It is because get_evaluation_result.R script provided by researchers has bugs and we have not been able to correct all of them yet.

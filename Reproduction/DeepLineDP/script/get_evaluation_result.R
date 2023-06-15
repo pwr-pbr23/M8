@@ -103,6 +103,9 @@ get.file.level.metrics = function(df.file)
   all.prob = df.file$prediction.prob
   all.pred = df.file$prediction.label
   
+  all.pred <- factor(all.pred, levels = c("True", "False"))
+  all.gt <- factor(all.gt, levels = c("True", "False"))
+
   confusion.mat = confusionMatrix(all.pred, reference = all.gt)
   
   bal.acc = confusion.mat$byClass["Balanced Accuracy"]
@@ -180,12 +183,12 @@ bi.lstm.prediction.dir = "../output/prediction/Bi-LSTM/"
 cnn.prediction.dir = "../output/prediction/CNN/"
 
 dbn.prediction.dir = "../output/prediction/DBN/"
-lr.prediction.dir = "../output/prediction/LR/"
+lr.prediction.dir = "../output/prediction/BoW/"
 
 bi.lstm.result = get.file.level.eval.result(bi.lstm.prediction.dir, "Bi.LSTM")
 cnn.result = get.file.level.eval.result(cnn.prediction.dir, "CNN")
 dbn.result = get.file.level.eval.result(dbn.prediction.dir, "DBN")
-lr.result = get.file.level.eval.result(lr.prediction.dir, "LR")
+lr.result = get.file.level.eval.result(lr.prediction.dir, "BoW")
 deepline.dp.result = get.file.level.eval.result(prediction_dir, "DeepLineDP")
 
 all.result = rbind(bi.lstm.result, cnn.result, dbn.result, lr.result, deepline.dp.result)
@@ -261,11 +264,8 @@ all_eval_releases = c('activemq-5.2.0', 'activemq-5.3.0', 'activemq-5.8.0',
 error.prone.result.dir = '../output/ErrorProne_result/'
 ngram.result.dir = '../output/n_gram_result/'
 
-rf.result.dir = '../output/RF-line-level-result/'
-
 n.gram.result.df = NULL
 error.prone.result.df = NULL
-rf.result.df = NULL 
 
 ## get result from baseline
 for(rel in all_eval_releases)
@@ -275,18 +275,17 @@ for(rel in all_eval_releases)
   levels(error.prone.result$EP_prediction_result)[levels(error.prone.result$EP_prediction_result)=="False"] = 0
   levels(error.prone.result$EP_prediction_result)[levels(error.prone.result$EP_prediction_result)=="True"] = 1
   
-  error.prone.result$EP_prediction_result = as.numeric(as.numeric_version(error.prone.result$EP_prediction_result))
+  error.prone.result$EP_prediction_result = as.numeric(as.character(error.prone.result$EP_prediction_result))
   
   names(error.prone.result) = c("filename","test","line.number","line.score")
   
   n.gram.result = read.csv(paste0(ngram.result.dir,rel,'-line-lvl-result.txt'), quote = "")
-  n.gram.result = select(n.gram.result, "filename", "line.number",  "line.score")
+
+  print(names(n.gram.result))
+
+  n.gram.result = select(n.gram.result, "filename", "line.number", "line.score")
   n.gram.result = distinct(n.gram.result)
   names(n.gram.result) = c("filename", "line.number", "line.score")
-  
-  rf.result = read.csv(paste0(rf.result.dir,rel,'-line-lvl-result.csv'))
-  rf.result = select(rf.result, "filename", "line_number","line.score.pred")
-  names(rf.result) = c("filename", "line.number", "line.score")
 
   cur.df.file = filter(line.ground.truth, test==rel)
   cur.df.file = select(cur.df.file, filename, line.number, line.level.ground.truth)
@@ -295,11 +294,8 @@ for(rel in all_eval_releases)
 
   error.prone.eval.result = get.line.metrics.result(error.prone.result, cur.df.file)
 
-  rf.eval.result = get.line.metrics.result(rf.result, cur.df.file)
-
   n.gram.result.df = rbind(n.gram.result.df, n.gram.eval.result)
   error.prone.result.df = rbind(error.prone.result.df, error.prone.eval.result)
-  rf.result.df = rbind(rf.result.df, rf.eval.result)
 
   print(paste0('finished ', rel))
   
@@ -343,12 +339,10 @@ deeplinedp.effort = effort20Recall$effort20Recall
 
 deepline.dp.line.result = data.frame(deeplinedp.ifa, deeplinedp.recall, deeplinedp.effort)
 
-names(rf.result.df) = c("IFA", "Recall20%LOC", "Effort@20%Recall")
 names(n.gram.result.df) = c("IFA", "Recall20%LOC", "Effort@20%Recall")
 names(error.prone.result.df)  = c("IFA", "Recall20%LOC", "Effort@20%Recall")
 names(deepline.dp.line.result) = c("IFA", "Recall20%LOC", "Effort@20%Recall")
 
-rf.result.df$technique = 'RF'
 n.gram.result.df$technique = 'N.gram'
 error.prone.result.df$technique = 'ErrorProne'
 deepline.dp.line.result$technique = 'DeepLineDP'
