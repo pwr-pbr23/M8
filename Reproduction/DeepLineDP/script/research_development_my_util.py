@@ -5,23 +5,76 @@ import pandas as pd
 
 max_seq_len = 50
 
-all_train_releases = {'dataset_RQ1': 'dataset_RQ1_train', 
-                      'dataset_RQ2': 'dataset_RQ2_train', 
-                      'dataset_RQ3': 'dataset_RQ3_train', 
-                      'dataset_RQ4': 'dataset_RQ4_train', 
-                      'dataset_RQ5': 'dataset_RQ5_train'}
+all_train_releases = {'dataset_RQ1': 'dataset_RQ1-0', 
+                      'dataset_RQ2': 'dataset_RQ2-0', 
+                      'dataset_RQ3': 'dataset_RQ3-5.0.0', 
+                      'dataset_RQ4': 'dataset_RQ4-0', 
+                      'dataset_RQ5': ['']}
 
-all_eval_releases = {'dataset_RQ1': ['dataset_RQ1_eval_1', 'dataset_RQ1_eval_2'], 
-                     'dataset_RQ2': ['dataset_RQ2_eval_1', 'dataset_RQ2_eval_2'], 
-                     'dataset_RQ3': ['dataset_RQ3_eval_1', 'dataset_RQ3_eval_2'], 
-                     'dataset_RQ4': ['dataset_RQ4_eval_1', 'dataset_RQ4_eval_2'], 
-                     'dataset_RQ5': ['dataset_RQ5_eval_1', 'dataset_RQ5_eval_2']}
+all_eval_releases = {'dataset_RQ1': ['dataset_RQ1-1', 'dataset_RQ1-2', 
+                                     'dataset_RQ1-3', 'dataset_RQ1-4', 
+                                     'dataset_RQ1-5', 'dataset_RQ1-6', 
+                                     'dataset_RQ1-7', 'dataset_RQ1-8', 
+                                     'dataset_RQ1-9', 'dataset_RQ1-10'], 
+                     'dataset_RQ2': ['dataset_RQ2-1', 'dataset_RQ2-2', 
+                                     'dataset_RQ2-3', 'dataset_RQ2-4', 
+                                     'dataset_RQ2-5', 'dataset_RQ2-6'], 
+                     'dataset_RQ3': ['dataset_RQ3-5.1.0', 'dataset_RQ3-5.2.0', 
+                                     'dataset_RQ3-5.3.0', 'dataset_RQ3-5.8.0', 
+                                     'dataset_RQ3-1.4.0', 'dataset_RQ3-2.9.0', 
+                                     'dataset_RQ3-2.10.0', 'dataset_RQ3-2.11.0', 
+                                     'dataset_RQ3-10.2.1.6', 'dataset_RQ3-10.3.1.4', 
+                                     'dataset_RQ3-10.5.1.1', 'dataset_RQ3-1_5_7', 
+                                     'dataset_RQ3-1_6_BETA_1', 'dataset_RQ3-1_6_BETA_2', 
+                                     'dataset_RQ3-0.94.0', 'dataset_RQ3-0.95.0', 
+                                     'dataset_RQ3-0.95.2', 'dataset_RQ3-0.9.0', 
+                                     'dataset_RQ3-0.10.0', 'dataset_RQ3-0.12.0', 
+                                     'dataset_RQ3-1.1', 'dataset_RQ3-1.4.0.2', 
+                                     'dataset_RQ3-1.5.0', 'dataset_RQ3-1.7.0.preview1',
+                                     'dataset_RQ3-2.3.0', 'dataset_RQ3-2.9.0.2', 
+                                     'dataset_RQ3-3.0.0', 'dataset_RQ3-3.1',
+                                     'dataset_RQ3-1.3.0-incubating-beta-1', 'dataset_RQ3-1.3.0-beta2', 
+                                     'dataset_RQ3-1.5.3'], 
+                     'dataset_RQ4': ['dataset_RQ4-1', 'dataset_RQ4-2', 
+                                     'dataset_RQ4-3', 'dataset_RQ4-4', 
+                                     'dataset_RQ4-5', 'dataset_RQ4-6', 
+                                     'dataset_RQ4-7', 'dataset_RQ4-8', 
+                                     'dataset_RQ4-9', 'dataset_RQ4-10'], 
+                     'dataset_RQ5': ['']}
 
-all_releases = {'dataset_RQ1': ['dataset_RQ1_train', 'dataset_RQ1_eval_1', 'dataset_RQ1_eval_2'], 
-                'dataset_RQ2': ['dataset_RQ2_train', 'dataset_RQ2_eval_1', 'dataset_RQ2_eval_2'], 
-                'dataset_RQ3': ['dataset_RQ3_train', 'dataset_RQ3_eval_1', 'dataset_RQ3_eval_2'], 
-                'dataset_RQ4': ['dataset_RQ4_train', 'dataset_RQ4_eval_1', 'dataset_RQ4_eval_2'], 
-                'dataset_RQ5': ['dataset_RQ5_train', 'dataset_RQ5_eval_1', 'dataset_RQ5_eval_2']}
+all_releases = {'dataset_RQ1': ['dataset_RQ1-0', 'dataset_RQ1-1', 
+                                'dataset_RQ1-2', 'dataset_RQ1-3', 
+                                'dataset_RQ1-4', 'dataset_RQ1-5', 
+                                'dataset_RQ1-6', 'dataset_RQ1-7', 
+                                'dataset_RQ1-8', 'dataset_RQ1-9', 
+                                'dataset_RQ1-10'], 
+                'dataset_RQ2': ['dataset_RQ2-0', 'dataset_RQ2-1',
+                                'dataset_RQ2-2', 'dataset_RQ2-3',
+                                'dataset_RQ2-4', 'dataset_RQ2-5', 
+                                'dataset_RQ2-6'], 
+                'dataset_RQ3': ['dataset_RQ3-5.0.0', 'dataset_RQ3-5.1.0', 
+                                'dataset_RQ3-5.2.0', 'dataset_RQ3-5.3.0', 
+                                'dataset_RQ3-5.8.0', 'dataset_RQ3-1.4.0', 
+                                'dataset_RQ3-2.9.0', 'dataset_RQ3-2.10.0', 
+                                'dataset_RQ3-2.11.0', 'dataset_RQ3-10.2.1.6', 
+                                'dataset_RQ3-10.3.1.4', 'dataset_RQ3-10.5.1.1',
+                                'dataset_RQ3-1_5_7', 'dataset_RQ3-1_6_BETA_1', 
+                                'dataset_RQ3-1_6_BETA_2', 'dataset_RQ3-0.94.0', 
+                                'dataset_RQ3-0.95.0', 'dataset_RQ3-0.95.2',
+                                'dataset_RQ3-0.9.0', 'dataset_RQ3-0.10.0', 
+                                'dataset_RQ3-0.12.0', 'dataset_RQ3-1.1', 
+                                'dataset_RQ3-1.4.0.2', 'dataset_RQ3-1.5.0', 
+                                'dataset_RQ3-1.7.0.preview1', 'dataset_RQ3-2.3.0', 
+                                'dataset_RQ3-2.9.0.2', 'dataset_RQ3-3.0.0', 
+                                'dataset_RQ3-3.1', 'dataset_RQ3-1.3.0-incubating-beta-1', 
+                                'dataset_RQ3-1.3.0-beta2', 'dataset_RQ3-1.5.3'], 
+                'dataset_RQ4': ['dataset_RQ4-0', 'dataset_RQ4-1', 
+                                'dataset_RQ4-2', 'dataset_RQ4-3', 
+                                'dataset_RQ4-4', 'dataset_RQ4-5', 
+                                'dataset_RQ4-6', 'dataset_RQ4-7',
+                                'dataset_RQ4-8', 'dataset_RQ4-9', 
+                                'dataset_RQ4-10'], 
+                'dataset_RQ5': ['']}
 
 all_projs = list(all_train_releases.keys())
 
@@ -85,7 +138,7 @@ def get_code3d_and_label(df, to_lowercase = False):
 
     for filename, group_df in df.groupby('filename'):
 
-        file_label = bool(group_df['file-label'].unique())
+        file_label = group_df['file-label'].unique().any()
 
         code = list(group_df['code_line'])
 
