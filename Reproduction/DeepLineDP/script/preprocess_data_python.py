@@ -1,9 +1,10 @@
+import pyarrow.parquet as pq
 import pandas as pd
-import os, re
+import os, re, sys
 import numpy as np
-
-path_to_data_root_dir = '/home/kuba/Desktop/ProjektBadawczoRozwojowy/'
-path_to_save_dir = "/home/kuba/Desktop/ProjektBadawczoRozwojowy/"
+import dask.dataframe as dd
+import fastparquet
+import csv
 
 char_to_remove = ['+','-','*','/','=','++','--','\\','<str>','<char>','|','&','!']
 
@@ -28,7 +29,7 @@ def is_comment_line(code_line, comments_list):
         return True
     elif code_line in comments_list:
         return True
-    
+
     return False
 
 def is_empty_line(code_line):
@@ -81,7 +82,7 @@ def create_code_df(code_str, filename):
     df = pd.DataFrame()
 
     code_lines = code_str.splitlines()
-    
+
     preprocess_code_lines = []
     is_comments = []
     is_blank_line = []
@@ -90,7 +91,7 @@ def create_code_df(code_str, filename):
     comments = re.findall(r'("""[\s\S]*?""")|\'\'\'[\s\S]*?\'\'\'',code_str,re.DOTALL)
     comments_str = '\n'.join(comments)
     comments_list = comments_str.split('\n')
-    
+
     for index, comment in enumerate(comments_list):
         comments_list[index] = comment.lstrip()
 
@@ -102,7 +103,7 @@ def create_code_df(code_str, filename):
 
         if not is_comment:
             l = preprocess_code_line(l)
-            
+
         is_blank_line.append(is_empty_line(l))
         preprocess_code_lines.append(l)
 
@@ -120,34 +121,116 @@ def create_code_df(code_str, filename):
 
     return df
 
+def get_all_training_files_from(directory):
+  files = []
+  for filename in os.listdir(directory):
+      filepath = os.path.join(directory, filename)
+      if os.path.isfile(filepath):
+        if "train" in filepath and "parquet.gzip" in filepath:
+          files.append(fastparquet.ParquetFile(filepath))
+      elif os.path.isdir(filepath):
+          files.extend(get_all_training_files_from(filepath))
+  return files
+
 def preprocess_data():
-    
-    file_level_data = pd.read_csv(path_to_data_root_dir + 'test.csv', encoding='latin')
-    file_level_data = file_level_data.fillna('')
 
-    preprocessed_df_list = []
+  parquet_files = get_all_training_files_from(path_to_dataset_catalog)
+  print(parquet_files)
 
-    for idx, row in file_level_data.iterrows():
+  chunk_size = 18000
+  outcome_csv_index = 0
 
-        filename = row['File']
+  all_files = 0
+  all_files_with_bugs = 0
+  all_files_without_bugs = 0
+  all_rejected_files = 0
 
-        if '.py' not in filename:
+  for parquet_file in parquet_files:
+
+    for group in parquet_file.iter_row_groups():
+
+      list_df = [group[i:i+chunk_size] for i in range(0, len(group), chunk_size)]
+      print(len(list_df))
+
+      for chunk_df in list_df:
+
+        chunk_files = 0
+        files_with_bugs = 0
+        files_without_bugs = 0
+        rejected_files = 0
+
+        preprocessed_df_list = []
+
+        for idx, row in chunk_df.iterrows():
+
+          all_files += 1
+          chunk_files += 1
+
+          if idx == 0:
             continue
 
-        code = row['SRC']
-        label = row['Bug']
+          try:
+            SRC = row.content.decode('UTF-8')
+          except:
+            all_rejected_files += 1
+            rejected_files += 1
+            continue
 
-        code_df = create_code_df(code, filename)
-        code_df['file-label'] = [False]*len(code_df)
-        code_df['line-label'] = [False]*len(code_df)
-                
-        if len(code_df) > 0:
-            preprocessed_df_list.append(code_df)
+          path = row.filepath
+          line = row.lines
+
+          if not np.size(line):
+            bug = False
+            all_files_without_bugs += 1
+            files_without_bugs += 1
+          else:
+            bug = True
+            all_files_with_bugs += 1
+            files_with_bugs += 1
+
+          data = {"File": path, "Bug": bug, "SRC": SRC}
+
+          filename = data['File']
+
+          if '.py' not in filename:
+            all_rejected_files += 1
+            rejected_files += 1
+            continue
+
+          code = data['SRC']
+          label = data['Bug']
+
+          code_df = create_code_df(code, filename)
+          code_df['file-label'] = [label]*len(code_df)
+          code_df['line-label'] = [False]*len(code_df)
+
+          if len(code_df) > 0:
+              preprocessed_df_list.append(code_df)
 
         all_df = pd.concat(preprocessed_df_list)
-        all_df.to_csv(path_to_save_dir + "result.csv",index=False)
+        all_df.to_csv(f"{path_to_outcome_catalog}result_{outcome_csv_index}.csv", index=False)
 
-        
+        print(f"Pliki dla chunk {outcome_csv_index}: {chunk_files}")
+        print(f"Pliki z błędami: {files_with_bugs}")
+        print(f"Pliki bez błędów: {files_without_bugs}")
+        print(f"Odrzucone pliki: {rejected_files}")
+
+        chunk_files = 0
+        files_with_bugs = 0
+        files_without_bugs = 0
+        rejected_files = 0
+
+        outcome_csv_index += 1
+        preprocessed_df_list = []
+        del(chunk_df)
+
+      del(list_df)
+      del(group)
+
+  print(f"Wszystkie pliki: {all_files}")
+  print(f"Wszystkie pliki z błędami: {all_files_with_bugs}")
+  print(f"Wszystkie pliki bez błędów: {all_files_without_bugs}")
+  print(f"Wszystkie odrzucone pliki: {all_rejected_files}")
+
 preprocess_data()
 print("DONE")
-
